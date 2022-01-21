@@ -23,7 +23,8 @@ export default function DayListItem(props) {
   
   return (
     <li 
-      onClick={onchange}
+      onClick={() => {
+        onchange(name)}}
       className={dayClass}
       selected={selected}
     >

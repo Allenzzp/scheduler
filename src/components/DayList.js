@@ -8,7 +8,7 @@ export default function DayList(props) {
     return <DayListItem 
       key={dayObj.id} 
       {...dayObj} 
-      onchange={() => {onChange(dayObj.name)}}
+      onchange={onChange}
       selected={value===dayObj.name} />
   });
   return (
