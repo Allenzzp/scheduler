@@ -13,6 +13,8 @@ export function getInterview(state, interviewObj) {
   }
   const interviewerId = interviewObj.interviewer + "";
   const interviewerObj = state.interviewers[interviewerId];
-  interviewObj.interviewer = interviewerObj;
-  return interviewObj;
+  
+  return {...interviewObj, interviewer: interviewerObj};
+  //why should we return a new {}
+  //instead of mofity the original interviewObj??
 }
