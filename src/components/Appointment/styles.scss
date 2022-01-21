@@ -65,7 +65,7 @@ $appointment-height: 11rem;
       color: rgba($booked-color, $active-opacity);
       background: linear-gradient(
         90deg,
-        rgba($booked-color, $active-opacity)，
+        rgba($booked-color, $active-opacity),
         rgba($booked-color, $active-opacity) 8px,
         rgba($booked-color, $inactive-opacity) 0,
         rgba($booked-color, $inactive-opacity)
