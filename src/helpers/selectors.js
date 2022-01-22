@@ -11,12 +11,19 @@ export function getInterview(state, interviewObj) {
   if (!interviewObj) {
     return null;
   }
-  const interviewerId = interviewObj.interviewer + "";
-  const interviewerObj = state.interviewers[interviewerId];
-  
-  // interviewObj.interviewer = interviewerObj;
-  // return interviewObj;
 
-  return {...interviewObj, interviewer: interviewerObj};
+  // return {student: interviewObj.student, interviewer: state.interviewers[interviewObj.interviewer]};
   
+  const interviewerId = interviewObj.interviewer;
+  const interviewerObj = state.interviewers[interviewerId];
+  console.log("1st", interviewObj);
+
+  interviewObj.interviewer = interviewerObj;
+  interviewObj.hello = "world";
+  
+  console.log("2nd", interviewObj);
+
+  return interviewObj;
+
+  // return {...interviewObj, interviewer: interviewerObj};
 }

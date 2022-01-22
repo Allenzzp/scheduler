@@ -7,6 +7,7 @@ import "./styles.scss";
 
 export default function Appointment(props) {
   const {time, interview} = props;
+
   return (
     <article className="appointment">
       <Header time={time}/>
