@@ -4,26 +4,28 @@ export function getAppointmentsForDay(state, day) {
   if (daySelected.length === 0) {
     return [];
   }
-  return daySelected[0].appointments.map(item => state.appointments["" + item]);
+  return daySelected[0].appointments.map(item => state.appointments[item]);
 }
 
 export function getInterview(state, interviewObj) {
   if (!interviewObj) {
     return null;
   }
-
-  // return {student: interviewObj.student, interviewer: state.interviewers[interviewObj.interviewer]};
+  return {student: interviewObj.student, interviewer: state.interviewers[interviewObj.interviewer]};
+  // if(typeof interviewObj.interviewer === "object") {
+  //   return interviewObj;
+  // }
   
-  const interviewerId = interviewObj.interviewer;
-  const interviewerObj = state.interviewers[interviewerId];
-  console.log("1st", interviewObj);
-
-  interviewObj.interviewer = interviewerObj;
-  interviewObj.hello = "world";
+  // interviewObj.interviewer = state.interviewers[interviewObj.interviewer];
   
-  console.log("2nd", interviewObj);
+  // return interviewObj;
+}
 
-  return interviewObj;
+export function getInterviewersForDay(state, day) {
+  const daySelected = state.days.filter(dayObj => dayObj.name === day);
 
-  // return {...interviewObj, interviewer: interviewerObj};
+  if (daySelected.length === 0) {
+    return [];
+  }
+  return daySelected[0].interviewers.map(item => state.interviewers[item]);
 }
