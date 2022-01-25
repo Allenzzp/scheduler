@@ -7,6 +7,7 @@ import useVisualMode from "hooks/useVisualMode";
 import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
+import Error from "./Error";
 import "./styles.scss";
 
 const EMPTY = "EMPTY";
@@ -31,6 +32,7 @@ export default function Appointment(props) {
     };
 
     transition(SAVING);
+
     bookInterview(id, interview)
       .then(() => transition(SHOW))
       .catch(err => {
@@ -44,12 +46,15 @@ export default function Appointment(props) {
   }
 
   function confirmDelete() {
-    transition(DELETING);
+
+    transition(DELETING, true);
+
     cancelInterview(id)
       .then((res) => {
           transition(EMPTY);
         })
-      .catch(e => {
+      .catch(err => {
+          console.log(err.message);
           transition(ERROR_DELETE, true);
         });
   }
@@ -97,6 +102,11 @@ export default function Appointment(props) {
         student={interview.student}
         interviewer={interview.interviewer.id}
       />}
+
+      {mode === ERROR_SAVE && <Error message="Can not create new appointment!" onClose={() => back()} />}
+
+      {mode === ERROR_DELETE && <Error message="Can not cancel appointment!" onClose={() => back()} />}
+      
     </article>
   );
 }
