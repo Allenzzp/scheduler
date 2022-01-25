@@ -11,14 +11,7 @@ export function getInterview(state, interviewObj) {
   if (!interviewObj) {
     return null;
   }
-  return {student: interviewObj.student, interviewer: state.interviewers[interviewObj.interviewer]};
-  // if(typeof interviewObj.interviewer === "object") {
-  //   return interviewObj;
-  // }
-  
-  // interviewObj.interviewer = state.interviewers[interviewObj.interviewer];
-  
-  // return interviewObj;
+  return {student: interviewObj.student, interviewer: {...state.interviewers[interviewObj.interviewer]}};
 }
 
 export function getInterviewersForDay(state, day) {
@@ -29,3 +22,4 @@ export function getInterviewersForDay(state, day) {
   }
   return daySelected[0].interviewers.map(item => state.interviewers[item]);
 }
+

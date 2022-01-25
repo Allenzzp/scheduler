@@ -6,7 +6,6 @@ import DayList from "./DayList";
 import Appointment from "./Appointment";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
-
 export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
@@ -14,6 +13,36 @@ export default function Application(props) {
     appointments: {},
     interviewers: {}
   });
+
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: {...interview}
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    }
+
+    return axios.put(`/api/appointments/${id}`, {interview})
+      .then((res) => {
+        setState({...state, appointments});
+      });
+  }
+
+  function cancelInterview(id) {
+    const appointment = {
+      ...state.appointments[id]
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    }
+    return axios.delete(`/api/appointments/${id}`)
+      .then((res) => {
+        setState({...state, appointments});
+      });
+  }
 
   const setDay = day => setState({...state, day});
   
@@ -60,12 +89,14 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         { dailyAppointments.map(appointment => {
-          const interview = getInterview(state, appointment.interview)
+          const interview = getInterview(state, appointment.interview);
           return <Appointment 
             {...appointment} 
             key={appointment.id}
             interview={interview}
             interviewers={dailyInterviewers}
+            bookInterview={bookInterview}
+            cancelInterview={cancelInterview}
           />
         })}
         <Appointment time="5pm" key="last" />
