@@ -13,6 +13,7 @@ export default function Form(props) {
   const reset = () => {
     setStudent("");
     setInterviewer(null);
+    setError("");
   }
   const cancel = () => {
     reset();
@@ -28,6 +29,8 @@ export default function Form(props) {
       setError("Must choose an interviewer");
       return;
     }
+
+    setError("");
     onSave(student, interviewer);
   }
 

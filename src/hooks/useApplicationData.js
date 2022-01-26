@@ -21,10 +21,14 @@ export default function() {
 
     return axios.put(`/api/appointments/${id}`, {interview})
       .then((res) => {
-        let index = spotsRemaining(id);
-        const changeDays = [...state.days];
-        changeDays[index].spots--;
-        setState({...state, appointments, days: changeDays});
+        if (!state.appointments[id].interview) {
+          let index = spotsRemaining(id);
+          const changeDays = [...state.days];
+          changeDays[index].spots--;
+          setState({...state, appointments, days: changeDays});
+        } else {
+          setState({...state, appointments});
+        }
       });
   }
 
