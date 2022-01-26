@@ -19,8 +19,6 @@ const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
 const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
-const NO_STUD_ERROR = "NO_STUD_ERROR";
-const NO_ITER_ERROR = "NO_ITER_ERROR";
 
 export default function Appointment(props) {
   const {id, time, interview, interviewers, bookInterview, cancelInterview} = props;
@@ -28,15 +26,6 @@ export default function Appointment(props) {
   const {mode, transition, back} = useVisualMode(interview ? SHOW : EMPTY);
 
   function save(name, interviewer) {
-
-    if (name.length === 0) {
-      transition(NO_STUD_ERROR);
-      return;
-    }
-    if (!interviewer) {
-      transition(NO_ITER_ERROR);
-      return;
-    }
 
     const interview = {
       student: name,
@@ -118,10 +107,6 @@ export default function Appointment(props) {
       {mode === ERROR_SAVE && <Error message="Can not create new appointment!" onClose={() => back()} />}
 
       {mode === ERROR_DELETE && <Error message="Can not cancel appointment!" onClose={() => back()} />}
-
-      {mode === NO_STUD_ERROR && <Error message="You need to choose a student first!" onClose={() => back()} />}
-
-      {mode === NO_ITER_ERROR && <Error message="You need to choose an interviewer first!" onClose={() => back()} />}
       
     </article>
   );
