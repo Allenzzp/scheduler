@@ -1,23 +1,39 @@
 # Interview Scheduler
 
-## Setup
+Interviewer Scheduler is a React application that allows users to book, edit and cancel interviews. This app renders different components when corresponding states changed to provide a realtime experience for users.
 
-Install dependencies with `npm install`.
+## Final Product
 
-## Running Webpack Development Server
+!["Make Appointment"](https://github.com/Allenzzp/scheduler/public/docs/Make-appointment.png)
 
-```sh
-npm start
-```
+!["Display Appointment"](https://github.com/Allenzzp/scheduler/public/docs/Display-appointment.png)
 
-## Running Jest Test Framework
+!["Edit Appointment"](https://github.com/Allenzzp/scheduler/public/docs/Edit-Appointment.png)
 
-```sh
-npm test
-```
+!["Cancel Appointment"](https://github.com/Allenzzp/scheduler/public/docs/Cancel-appointment-confirm.png)
 
-## Running Storybook Visual Testbed
+!["Appointment Canceled"](https://github.com/Allenzzp/scheduler/public/docs/Appointment-canceled.png)
 
-```sh
-npm run storybook
-```
+## Dependencies
+
+- axios
+- React
+- classnames
+- Webpack Dev Server
+
+## Testing
+
+- prop-types
+- storybook
+- jest
+- cypress
+
+## Getting Started
+
+- Install all dependencies (using the `npm install` command).
+- Running Webpack Development Server
+  `npm start`
+- Running Jest Test Framework
+  `npm test`
+
+
