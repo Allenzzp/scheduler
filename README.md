@@ -3,8 +3,8 @@
 Interviewer Scheduler is a React application that allows users to book, edit and cancel interviews. This app renders different components when corresponding states changed to provide a realtime experience for users.
 
 ## Final Product
-
-!["Make Appointment"](https://github.com/Allenzzp/scheduler/blob/master/public/docs/Make-appointment.png)
+- Make Appointment
+!["Make Appointment"](https://github.com/Allenzzp/scheduler/blob/master/public/docs/make-appointment.png)
 
 !["Display Appointment"](https://github.com/Allenzzp/scheduler/blob/master/public/docs/Display-appointment.png)
 
