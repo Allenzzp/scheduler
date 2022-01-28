@@ -3,6 +3,7 @@ import axios from "axios";
 
 export default function() {
   //just test oit!
+  //this is bad!
   const [state, setState] = useState({
     day: "Monday",
     days: [],
