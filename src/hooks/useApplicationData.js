@@ -25,16 +25,17 @@ export default function() {
           let index = spotsRemaining(id);
           const changeDays = [...state.days];
           changeDays[index].spots--;
-          setState({...state, appointments, days: changeDays});
+          setState(state => ({ ...state, appointments, days: changeDays}));
         } else {
-          setState({...state, appointments});
+          setState(state => ({...state, appointments}));
         }
       });
   }
 
   function cancelInterview(id) {
     const appointment = {
-      ...state.appointments[id]
+      ...state.appointments[id],
+      interview: null
     };
     const appointments = {
       ...state.appointments,
