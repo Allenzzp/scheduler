@@ -97,8 +97,8 @@ export default function() {
   }, []);
 
   useEffect(() => {
-    // const wb = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
-    const wb = new WebSocket("ws://scheduler-lhl-al.herokuapp.com/");
+    const wb = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
+    // const wb = new WebSocket("ws://scheduler-lhl-al.herokuapp.com/");
 
     wb.onopen = (event) => {
       wb.send("ping");
