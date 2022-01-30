@@ -53,5 +53,5 @@
       "<rootDir>/.git/"
     ]
   },
-  "proxy": "http://localhost:8001"
+  "proxy": "wss://scheduler-lhl-al.herokuapp.com/"
 }
