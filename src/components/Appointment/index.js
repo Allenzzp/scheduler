@@ -9,7 +9,6 @@ import Status from "./Status";
 import Confirm from "./Confirm";
 import Error from "./Error";
 import "./styles.scss";
-import { transformSync } from "@babel/core";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
