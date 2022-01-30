@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Header from "./Header";
 import Show from "./Show";
@@ -9,6 +9,7 @@ import Status from "./Status";
 import Confirm from "./Confirm";
 import Error from "./Error";
 import "./styles.scss";
+import { transformSync } from "@babel/core";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
@@ -24,6 +25,15 @@ export default function Appointment(props) {
   const {id, time, interview, interviewers, bookInterview, cancelInterview} = props;
 
   const {mode, transition, back} = useVisualMode(interview ? SHOW : EMPTY);
+
+  useEffect(() => {
+    if (interview && mode === EMPTY) {
+      transition(SHOW);
+    }
+    if (interview === null && mode === SHOW) {
+      transition(EMPTY);
+    }
+  }, [interview, transition, mode]);
 
   function save(name, interviewer) {
 
@@ -69,7 +79,7 @@ export default function Appointment(props) {
       <Header time={time}/>
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
 
-      {mode === SHOW && (
+      {mode === SHOW && interview && (
         <Show 
           student={interview.student}
           interviewer={interview.interviewer}

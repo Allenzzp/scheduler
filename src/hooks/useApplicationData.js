@@ -73,16 +73,10 @@ export default function() {
 
   function bookInterview(id, interview) {
     return axios.put(`/api/appointments/${id}`, {interview})
-      .then((res) => {
-        dispatch({ type: SET_INTERVIEW, id, interview });
-      });
   }
 
   function cancelInterview(id) {
     return axios.delete(`/api/appointments/${id}`)
-      .then((res) => {
-        dispatch({type: SET_INTERVIEW, id, interview: null});
-      });
   }
 
   const setDay = day => dispatch({type: SET_DAY, day});
@@ -100,6 +94,28 @@ export default function() {
         interviewers: all[2].data
       });
     });
+  }, []);
+
+  useEffect(() => {
+    // const wb = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
+    const wb = new WebSocket("ws://scheduler-lhl-al.herokuapp.com/");
+
+    wb.onopen = (event) => {
+      wb.send("ping");
+    }
+
+    wb.onmessage = (event) => {
+      console.log("Message Received: ", event.data);
+      const receive = JSON.parse(event.data);
+      if (receive.type === SET_INTERVIEW) {
+        dispatch({type: receive.type,
+          id: receive.id,
+          interview: receive.interview
+        });
+      }
+    }
+
+    return () => {wb.close()};
   }, []);
 
   return {
